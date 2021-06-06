@@ -1,0 +1,92 @@
+extends layout
+
+block content
+
+    - user = typeof(udata) != 'undefined' ? udata : undefined
+    - var months = []
+    each item in user.files
+        - if(!months.includes(item.dir))
+            - months.push(item.dir)
+    link(rel='shortcut icon' type='image/png' href='/css/logo.png')
+    .header
+        .logo
+            a(href='/home')
+                img(src='/css/logo.png' width='80' height='60' alt='logo' style="left: 25px;position: absolute;")
+                h1 CPA Tool
+                h8 The Right Way To Manage Your Files
+
+        .search_box
+            .sendallLabel#sendall-btn SEND ALL
+            .dropdown1#dropdown-month(data-control='checkbox-dropdown' )
+                label.dropdown1-label Month
+                .dropdown1-list
+                    label.dropdown1-option(href='#' data-toggle='check-all')
+                        | Check All
+                    each item in months
+                        label.dropdown1-option
+                            input(type='checkbox' name='dropdown1-group1' value=item)
+                            | #{item}
+
+
+    input#openSidebarMenu.openSidebarMenu(type='checkbox')
+    label.sidebarIconToggle(for='openSidebarMenu')
+        .spinner.diagonal.part-1
+        .spinner.horizontal
+        .spinner.diagonal.part-2
+    #sidebarMenu
+        ul.sidebarMenuInner
+            li
+                a(href='/home' ) Home
+            li
+                a(href='#' )#settings-btn Settings
+            .section(style='position: absolute; display: inline-flex; width: 100%; bottom: 0;')
+                li(style='width: 195px; overflow-x: hidden;')
+                    a(href='/my-user' style='width: 195px; overflow-x: hidden;')=user.name
+
+    form.box(method='post' action='upload-file' enctype='multipart/form-data' novalidate='')
+        .box__input
+            img(src='/css/up-arrow.png' width='100' height='100' style="display: block; margin-left: auto; margin-right: auto; margin-top: -2em;")
+            input#file.box__file(type='file' name='files[]' data-multiple-caption='{count} files selected' multiple='')
+            label(for='file' style="width: 20%; display: block; margin-left: auto; margin-right: auto; margin-top: 2em;")
+                strong Choose a file
+                span.box__dragndrop  or drag it here
+                | .
+            button#upload.btfooter(type="button" style="width: 20%; display: block; margin-left: auto; margin-right: auto; margin-top: 2em;") Upload
+        .box__uploading(style="width: 20%; margin-left: auto; margin-right: auto; margin-top: 2em;") Uploading&mldr;
+        .box__success(style="width: 20%; margin-left: auto; margin-right: auto; margin-top: 2em;") Done!
+        .box__error(style="width: 20%; margin-left: auto; margin-right: auto; margin-top: 2em;")
+            | Error!
+            span
+            | .
+
+    .content
+        .grid
+        // /grid
+        .preview
+            button.action.action--close
+                i.fa.fa-times
+                span.text-hidden Close
+            .description.description--preview
+            .background-movie
+
+
+
+    include modals/error
+    include modals/delete
+    include modals/edit-password
+    include modals/add-file
+    include modals/settings
+    include modals/send
+
+    script.
+        $(document).ready(function () {
+            getValue(!{JSON.stringify(user)});
+            setFiles();
+        });
+
+    script(src='/js/files-grid/modernizr-custom.js')
+    script(src='/js/files-grid/imagesloaded.pkgd.min.js')
+    script(src='/js/files-grid/masonry.pkgd.min.js')
+    script(src='/js/files-grid/classie.js')
+    script(src='/js/home.js')
+

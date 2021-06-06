@@ -1,0 +1,33 @@
+{
+  "name": "IET",
+  "version": "1.0.0",
+  "description": "Accountant tool website developed by node.js & mongoDB",
+  "private": false,
+  "dependencies": {
+    "babelify": "^10.0.0",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
+    "easy-pdf-merge": "^0.2.6",
+    "emailjs": "^2.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
+    "localtunnel": "^2.0.1",
+    "moment": "^2.29.1",
+    "mongodb": "^3.6.3",
+    "multer": "latest",
+    "node-cron": "^3.0.0",
+    "pdfmerger": "^0.2.0",
+    "pug": "^3.0.2",
+    "stylus": "^0.54.8"
+  },
+  "engines": {
+    "node": "10.4.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Dor Swisa & Ami Bitan & Guy Cohen & Yarin Avraham",
+  "license": "ISC"
+}

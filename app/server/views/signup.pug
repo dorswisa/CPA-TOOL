@@ -1,0 +1,46 @@
+extends layout
+
+block content
+    link(rel='shortcut icon' type='image/png' href='/css/logo.png')
+    // log in form
+    .login-form
+        .content-former.cd-form
+            form.cd-form#cd-signup
+                .modal-top
+                    img(src='/css/logo.png' width='88' height='65' alt='logo')
+                    h1(style="margin-left: 15px;") CPA Tool
+                    h5(style="margin-left: 15px;") The Right Way To Manage Your Files
+                div(style='padding-bottom: 10px')
+                    h3
+                        b(style="font-style: italic;") Sign-Up
+                .form-group
+                    input#signup-name.form-control(name='signup-name' placeholder=' ' type='text' required='' style='box-shadow: none;border-radius:0px')
+                    label.input-form(for='signup-name') Company Name
+                .form-group
+                    input#signup-email.form-control(name='signup-email' placeholder=' ' type='email' required='' style='box-shadow: none;border-radius:0px')
+                    label.input-form(for='signup-email') Email
+                .form-group
+                    input#signup-password.form-control(name='signup-password' placeholder=' ' type='password' required='' style='box-shadow: none;border-radius:0px')
+                    label.input-form(for='signup-password') Password
+                    .hide-password
+                        img(src='/css/visibility.png')
+                .cd_modal-footer
+                    button.btn.btfooter(type='submit') SIGN-UP
+        .cd-form-bottom-message
+            a.cd-signup(href='/')  Want to login?
+
+    .cd-user-modal
+        // this is the entire modal form, including the background
+        .cd-user-modal-container
+            include modals/reset-password
+
+    include modals/error
+    include modals/edit-password
+    script(src='/js/signinup.js')
+
+    if(popUpPass)
+        script.
+            $(document).ready(function () {
+                $('#edit-password-modal').modal('show');
+                $('#edit-password-modal .alert').hide()
+            });

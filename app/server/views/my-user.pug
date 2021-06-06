@@ -1,0 +1,56 @@
+extends layout
+
+block content
+    - user = typeof(udata) != 'undefined' ? udata : undefined
+
+    .header
+        .logo
+            a(href='/home')
+                img(src='/css/logo.png' width='80' height='60' alt='logo' style="left: 25px;position: absolute;")
+                h1 CPA Tool
+                h8 The Right Way To Manage Your Files
+
+    input#openSidebarMenu.openSidebarMenu(type='checkbox')
+    label.sidebarIconToggle(for='openSidebarMenu')
+        .spinner.diagonal.part-1
+        .spinner.horizontal
+        .spinner.diagonal.part-2
+    #sidebarMenu
+        ul.sidebarMenuInner
+            li
+                a(href='/home' ) Home
+            li
+                a(href='/home?show=sale' ) Settings
+            .section(style='position: absolute; display: inline-flex; width: 100%; bottom: 0;')
+                li(style='width: 195px; overflow-x: hidden;')
+                    a(href='/my-user' style='width: 195px; overflow-x: hidden;')=user.name
+
+
+    .content-former(style="width: 60%; position: relative; left: 25%; top:15%; z-index: 2;")
+        form(method="post")#edit-user-form
+            .page-info
+                h1 Edit My-User
+                br
+                br
+            .form-group
+                input#edit-username.form-control(name='edit-username' placeholder=' ' type='text' required='' style='box-shadow: none;border-radius:0px; background-color: transparent; outline: none;' value=user.name)
+                label.input-form(for='edit-username') Company Name
+            .form-group
+                input#edit-email.form-control(name='edit-email' placeholder=' ' type='text' required='' style='box-shadow: none;border-radius:0px; background-color: transparent; outline: none;' value=user.email)
+                label.input-form(for='edit-email') Email
+            .form-group
+                .form-group
+                    input#edit-password.form-control(name='edit-password' placeholder=' ' type='password' pattern=".{6,}"  title="Password Should Be At Least 6 Characters" style='box-shadow: none;border-radius:0px; background-color: transparent; outline: none;')
+                    label.input-form(for='edit-password') Password
+                    a.hide-password(href='#0')
+                        img(src='/css/visibility.png')
+            .cd_modal-footer
+                button.btn.btn-info(type='submit' style='width: 20%; border-radius: 34rem;font-size: 14px; font-weight: bold; height: 46px; border: none; padding: 10px; margin-right: 5px; outline: none;') Edit
+                .div(style="float: right;")
+                    button.btn-danger#btn-delete(type='button' style='width: 100px; border-radius: 34rem;font-size: 14px; font-weight: bold; height: 46px; border: none; padding: 10px; margin-right: 5px; outline: none;') Delete
+                    button.bg-warning#btn-logout(type='button' style='width: 100px; border-radius: 34rem;font-size: 14px; font-weight: bold; height: 46px; border: none; padding: 10px; outline: none;') Log-Out
+
+    include modals/error
+    include modals/delete
+
+    script(src='/js/my-user.js')

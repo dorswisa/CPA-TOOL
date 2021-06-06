@@ -1,0 +1,20 @@
+
+#settings-modal.modal.fade
+    .modal-dialog
+        .modal-content
+            .modal-header(style="height: 80px")
+                img(src='/css/logo.png' width='75' height='55' alt='logo' style="margin-left: 20px;")
+                button.close(type='button' aria-label='Close' data-dismiss='modal' style='color: #F74040; outline: none; z-index:99')
+                    span(style='font-size: 40px;') &times;
+                h4(style="position: absolute; width: 100%; text-align:center; font-weight: bold; font-style: italic; font-size:32px;").modal-title Settings
+            .modal-body(style='padding-bottom: 0; outline: none;')
+                form(method="post")#settings-form
+                    label(style='padding-bottom: 10px; padding-top: 10px') Please enter your new password
+                    .form-group
+                        input#accmail.form-control(name='accmail' placeholder=' ' type='email' required='' pattern='[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)+' style='box-shadow: none;border-radius:0px; color: black;' value=user.accmail)
+                        label.input-form(for='accmail') Accountant's E-mail
+                    .form-group
+                        textarea#signature.form-control(name='signature' rows="5" placeholder=' ' required='' style='box-shadow: none;border-radius:0px; background-color: transparent; outline: none; color: black;')=user.signature
+                        label.input-form(for='signature') Signature
+            .modal-footer
+                button.btn.btfooter(type='submit' form="settings-form") Save Settings
